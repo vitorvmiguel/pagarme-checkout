@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
-    var transaction = req.body;
+    var transaction = req.body.pagarme;
 
     res.send(   '<h3>Token: ' + req.body.token + '</h3>\n' + 
                 '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>');
