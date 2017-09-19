@@ -13,7 +13,10 @@ app.get('/', function(req, res) {
 
 app.post('/capture', function(req, res){
 
-    console.log(req.body);
+    var amount = req.body.transaction.amount;
+    var token = req.body.transaction.id;
+
+    console.log('amount: ' + amount + ' id: ' + token);
     
     pagarme.client.connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
     .then(client => client.transactions.capture({ id: token, amount: amount }));
@@ -21,4 +24,4 @@ app.post('/capture', function(req, res){
     res.send('ok');
 });
 
-app.listen(80, function(){});
+app.listen(80, function(){console.log('server running');});
