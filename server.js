@@ -12,11 +12,10 @@ app.get('/', function(req, res) {
 });
 
 app.post('/comprar', function(req, res) {
-    console.log(req.body);
+    console.log('/comprar ' + req.body);
 });
 
 app.post('/capture', function(req, res){
-    console.log(req.body);
 
     var amount = req.body.transaction.amount;
     var token = req.body.transaction.id;
