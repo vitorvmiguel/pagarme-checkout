@@ -16,17 +16,17 @@ app.get('/comprar', function(req, res) {
 })
 
 app.post('/capture', function(req, res){
-    console.log('OBJECT \n' + req.body);
+    console.log(req.body);
 
-    var amount = req.body.transaction.amount;
-    var token = req.body.transaction.id;
+    // var amount = req.body.transaction.amount;
+    // var token = req.body.transaction.id;
 
-    console.log('\n amount: ' + amount + ' id: ' + token);
+    // console.log('\n amount: ' + amount + ' id: ' + token);
     
-    pagarme.client
-        .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
-        .then(client => client.transactions.capture({ id: token, amount: amount }))
-        .catch(error => console.error(error));
+    // pagarme.client
+    //     .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
+    //     .then(client => client.transactions.capture({ id: token, amount: amount }))
+    //     .catch(error => console.error(error));
 });
 
 app.listen(80, function(){console.log('server running');});
