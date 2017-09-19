@@ -12,6 +12,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/comprar', function(req, res) { 
+    res.send('<h1>token: ' + req.body.token + ' card_hash: ' + req.body.pagarme.card_hash + '</h1>');
     console.log('/comprar ' + JSON.stringify(req.body));
 });
 
