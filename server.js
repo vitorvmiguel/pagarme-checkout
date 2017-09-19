@@ -18,7 +18,7 @@ app.post('/comprar', function(req, res) {
     res.send(   '<h3>Token: ' + req.body.token + '</h3>\n' + 
                 '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>');
 
-    console.log('/comprar ' + (JSON.stringify(req.body.pagarme)));
+    console.log('*********** TRANSACTION: ' + (JSON.stringify(req.body.pagarme)));
 
     pagarme.client
     .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
@@ -32,9 +32,9 @@ app.post('/capture', function(req, res){
     var token = req.body.transaction.id;
     
     pagarme.client
-        .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
-        .then(client => client.transactions.capture({ id: token, amount: amount }))
-        .catch(error => console.error(error));
+    .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
+    .then(client => client.transactions.capture({ id: token, amount: amount }))
+    .catch(error => console.error(error));
 });
 
 app.listen(80, function(){console.log('server running');});
