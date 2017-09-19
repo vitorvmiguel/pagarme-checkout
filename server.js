@@ -8,20 +8,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 app.get('/', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.post('/comprar', function(req, res) { 
-    res.send('<h1>token: ' + req.body.token + ' card_hash: ' + req.body.pagarme.card_hash + '</h1>');
+
+    var transaction = req.body;
+
+    res.send(   '<h3>Token: ' + req.body.token + '</h3>\n' + 
+                '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>');
+
     console.log('/comprar ' + JSON.stringify(req.body));
+
+    pagarme.client
+    .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
+    .then(client => client.transactions.create({transaction}))
+    .catch(error => console.log(error));
 });
 
 app.post('/capture', function(req, res){
 
     var amount = req.body.transaction.amount;
     var token = req.body.transaction.id;
-
-    console.log('\n amount: ' + amount + ' id: ' + token);
     
     pagarme.client
         .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
