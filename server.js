@@ -11,6 +11,10 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
+app.post('/comprar', function(req, res) {
+    console.log(req.body);
+});
+
 app.post('/capture', function(req, res){
     console.log(req.body);
 
