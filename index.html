@@ -12,7 +12,23 @@
     <form method="POST" action="/comprar">
         <script type="text/javascript"
             src="https://assets.pagar.me/checkout/checkout.js"
-            data-button-text="Pagar"
+            data-button-text="Pagar CARD HASH"
+            data-encryption-key="ek_test_rb191XLS5elORovFEo61LgASfPYt92"
+            data-amount="20000"
+            data-customer-data="true"
+            data-payment-methods="boleto,credit_card"
+            data-ui-color="#555555"
+            data-postback-url="http://34.239.250.4/capture"
+            data-create-token="false"
+            data-header-text="Checkout CARD HASH Pagar.me"
+            data-payment-button-text="Finalizar pagamento">
+        </script>
+    </form>
+
+    <form method="POST" action="/comprar">
+        <script type="text/javascript"
+            src="https://assets.pagar.me/checkout/checkout.js"
+            data-button-text="Pagar TOKEN"
             data-encryption-key="ek_test_rb191XLS5elORovFEo61LgASfPYt92"
             data-amount="20000"
             data-customer-data="true"
@@ -20,15 +36,14 @@
             data-ui-color="#555555"
             data-postback-url="http://34.239.250.4/capture"
             data-create-token="true"
-            data-interest-rate="12"
-            data-max-installments="12"
-            data-free-installments="3"
-            data-default-installment="5"
-            data-header-text="Checkout Pagar.me"
-            data-button-text="Pagar agora!"
+            data-header-text="Checkout TOKEN Pagar.me"
             data-payment-button-text="Finalizar pagamento">
         </script>
     </form>
 
+    <!--    data-interest-rate="0"
+            data-max-installments="12"
+            data-free-installments="3"
+            data-default-installment="5"-->
 </body>
 </html>
