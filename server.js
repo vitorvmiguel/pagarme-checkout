@@ -13,17 +13,27 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
-    var transaction = JSON.stringify(req.body.pagarme);
+    var print;
 
-    res.send(   '<h3>Token: ' + req.body.token + '</h3>\n' + 
-                '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>');
+    if (req.body.token) {
+        console.log('*********** TOKEN: ' + JSON.stringify(req.body));
+        
+        print = '<h3>Token: ' + req.body.token + '</h3>\n';
+        
+    } else {
+        console.log('*********** CARD_HASH: ' + JSON.stringify(req.body.pagarme));
 
-    console.log('*********** TRANSACTION: ' + (JSON.stringify(req.body.pagarme)));
+        print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
+        var transaction = JSON.stringify(req.body.pagarme);
+        
+        pagarme.client
+        .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
+        .then(client => client.transactions.create({transaction}))
+        .catch(error => console.log(error));
+    }
 
-    pagarme.client
-    .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
-    .then(client => client.transactions.create({transaction}))
-    .catch(error => console.log(error));
+    res.send(print);
+
 });
 
 app.post('/capture', function(req, res){
