@@ -1,6 +1,11 @@
 var express = require('express');
 var pagarme = require('pagarme');
+var bodyParser = require('body-parser');
+
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
