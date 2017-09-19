@@ -11,8 +11,8 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
-app.post('/comprar', function(req, res) {
-    console.log('/comprar ' + JSON.stringfy(req.body));
+app.post('/comprar', function(req, res) { 
+    console.log('/comprar ' + JSON.stringify(req.body));
 });
 
 app.post('/capture', function(req, res){
