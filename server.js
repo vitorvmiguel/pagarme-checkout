@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/comprar', function(req, res) {
-    console.log('/comprar ' + req.body);
+    console.log('/comprar ' + JSON.stringty(req.body));
 });
 
 app.post('/capture', function(req, res){
