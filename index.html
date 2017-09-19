@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout Pagar.me</title>
+</head>
+<body>
+    <h1>Checkout Pagar.me</h1>
+
+    <form method="POST" action="/comprar">
+        <script type="text/javascript"
+            src="https://assets.pagar.me/checkout/checkout.js"
+            data-button-text="Pagar"
+            data-encryption-key="ek_test_rb191XLS5elORovFEo61LgASfPYt92"
+            data-amount="20000"
+            data-customer-data="true"
+            data-payment-methods="boleto,credit_card"
+            data-ui-color="#555555"
+            data-postback-url="https://ec2-34-239-250-4.compute-1.amazonaws.com/capture"
+            data-create-token="true"
+            data-interest-rate="12"
+            data-max-installments="12"
+            data-free-installments="3"
+            data-default-installment="5"
+            data-header-text="Checkout Pagar.me"
+            data-button-text="Pagar agora!"
+            data-payment-button-text="Finalizar pagamento">
+        </script>
+    </form>
+
+</body>
+</html>
