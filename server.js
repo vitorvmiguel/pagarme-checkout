@@ -13,12 +13,12 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
-    var transaction = req.body.pagarme;
+    var transaction = JSON.stringify(req.body.pagarme);
 
     res.send(   '<h3>Token: ' + req.body.token + '</h3>\n' + 
                 '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>');
 
-    console.log('/comprar ' + (req.body.pagarme));
+    console.log('/comprar ' + (JSON.stringify(req.body.pagarme)));
 
     pagarme.client
     .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
