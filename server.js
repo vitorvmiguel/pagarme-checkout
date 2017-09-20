@@ -25,17 +25,17 @@ app.post('/comprar', function(req, res) {
 
         console.log('*********** TOKEN: ' + JSON.stringify(req.body));
 
-        print = '<h3>Token: ' + req.body.token + '</h3>\n';
+        print = '<h3>Token: ' + token + '</h3>\n';
 
     } 
     
     if (req.body.pagarme) {
 
-        trx = req.body.pagarme;
+        trx = JSON.stringify(req.body.pagarme);
 
-        console.log('*********** CARD_HASH: ' + JSON.stringify(trx));
+        console.log('*********** CARD_HASH: ' + trx);
 
-        print = '<h3>Card_hash: ' + trx.card_hash + '</3>';
+        print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
 
         pagarme.client
             .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
@@ -58,4 +58,4 @@ app.post('/capture', function(req, res){
 
 });
 
-app.listen(80, function(){console.log('server running');});
+app.listen(80, function(){console.log('\n*********** SERVER RUNNING ***********\n');});
