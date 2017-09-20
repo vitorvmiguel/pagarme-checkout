@@ -31,7 +31,7 @@ app.post('/comprar', function(req, res) {
     
     if (req.body.pagarme) {
 
-        trx = JSON.stringify(req.body.pagarme);
+        trx = req.body.pagarme;
 
         console.log('*********** CARD_HASH: ' + trx);
 
@@ -54,7 +54,7 @@ app.post('/capture', function(req, res){
     pagarme.client
         .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
         .then(client => client.transactions.capture({ id: token, amount: req.body.transaction.amount }))
-        .catch(error => response.errors.map(console.log));
+        .catch(error => error.response.errors.map(console.log));
 
 });
 
