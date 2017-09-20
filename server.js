@@ -10,7 +10,6 @@ var token;
 var trx;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -18,12 +17,10 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
-    console.log('********** REQ.BODY: ' + JSON.stringify(req.body));
-
     if (req.body.token) {
         token = req.body.token;
 
-        console.log('*********** TOKEN: ' + JSON.stringify(req.body));
+        console.log('*********** TOKEN: ' + token);
 
         print = '<h3>Token: ' + token + '</h3>\n';
 
@@ -31,7 +28,7 @@ app.post('/comprar', function(req, res) {
     
     if (req.body.pagarme) {
 
-        trx = req.body;
+        trx = req.body.pagarme;
 
         console.log('*********** CARD_HASH: ' + trx);
 
