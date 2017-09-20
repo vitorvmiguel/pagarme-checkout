@@ -28,15 +28,15 @@ app.post('/comprar', function(req, res) {
     
     if (req.body.pagarme) {
 
-        trx = JSON.parse(req.body.pagarme);
+        trx = JSON.stringify(req.body.pagarme);
 
-        console.log('*********** CARD_HASH: ' + trx);
+        console.log('*********** CARD_HASH: ' + typeof trx);
 
         print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
 
         pagarme.client
             .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
-            .then(client => client.transactions.create({trx}))
+            .then(client => client.transactions.create(trx))
             .catch(error => error.response.errors.map(console.log));
     }
 
