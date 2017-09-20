@@ -4,6 +4,11 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var amount;
+var print;
+var token;
+var trx;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
@@ -13,10 +18,38 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
-    console.log('REQ.BODY: ' + JSON.stringify(req.body));
+    console.log('********** REQ.BODY: ' + JSON.stringify(req.body));
 
-    // var print;
+    if (req.body.token) {
+        token = req.body.token;
 
+        console.log('*********** TOKEN: ' + JSON.stringify(req.body));
+
+        print = '<h3>Token: ' + req.body.token + '</h3>\n';
+
+    } else {
+        trx = JSON.stringify(req.body.pagarme);
+
+        console.log('*********** CARD_HASH: ' + trx);
+
+        print = '<h3>Card_hash: ' + trx.card_hash + '</3>';
+
+        pagarme.client
+            .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
+            .then(client => client.transactions.create({trx}))
+            .catch(error => error.response.errors.map(console.log));
+    }
+
+    if (req.body.transaction) {
+
+        console.log('*********** CAPTURA')
+
+        pagarme.client
+            .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
+            .then(client => client.transactions.capture({ id: token, amount: req.body.transaction.amount }))
+            .catch(error => console.error(error));
+
+    }
     // if (req.body.token) {
     //     console.log('*********** TOKEN: ' + JSON.stringify(req.body));
 
@@ -36,7 +69,7 @@ app.post('/comprar', function(req, res) {
     //     .catch(error => error.response.errors.map(console.log));
     // }
 
-    // res.send(print);
+    res.send(print);
 
 });
 
