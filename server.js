@@ -14,11 +14,12 @@ app.get('/', function(req, res) {
 app.post('/comprar', function(req, res) { 
 
     var print;
+    var date = new Date();
 
     if (req.body.token) {
         token = req.body.token;
 
-        console.log('*********** TOKEN: ' + token);
+        console.log(date + '*********** TOKEN: ' + token);
         print = '<h3>Token: ' + token + '</h3>\n';
 
     } 
@@ -28,7 +29,7 @@ app.post('/comprar', function(req, res) {
         var trx;
         trx = req.body.pagarme;
 
-        console.log('*********** CARD_HASH: ' + trx);
+        console.log(date + '*********** CARD_HASH: ' + trx.card_hash);
         print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
 
         pagarme.client
@@ -43,7 +44,9 @@ app.post('/comprar', function(req, res) {
 
 app.post('/capture', function(req, res){
     
-    console.log('*********** CAPTURA, token: ' + token + ' amount: ' + req.body.transaction.amount);
+    var date = new Date();
+    
+    console.log(date + '*********** CAPTURA, token: ' + token + ' amount: ' + req.body.transaction.amount);
     
     pagarme.client
         .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
