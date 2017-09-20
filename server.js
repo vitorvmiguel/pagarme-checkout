@@ -27,7 +27,10 @@ app.post('/comprar', function(req, res) {
 
         print = '<h3>Token: ' + req.body.token + '</h3>\n';
 
-    } else {
+    } 
+    
+    if (req.body.pagarme) {
+        
         trx = JSON.stringify(req.body.pagarme);
 
         console.log('*********** CARD_HASH: ' + trx);
