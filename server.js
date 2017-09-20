@@ -3,11 +3,7 @@ var pagarme = require('pagarme');
 var bodyParser = require('body-parser');
 
 var app = express();
-
-var amount;
-var print;
 var token;
-var trx;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,21 +13,22 @@ app.get('/', function(req, res) {
 
 app.post('/comprar', function(req, res) { 
 
+    var print;
+
     if (req.body.token) {
         token = req.body.token;
 
         console.log('*********** TOKEN: ' + token);
-
         print = '<h3>Token: ' + token + '</h3>\n';
 
     } 
     
     if (req.body.pagarme) {
 
+        var trx;
         trx = req.body.pagarme;
 
-        console.log('*********** CARD_HASH: ' + typeof trx);
-
+        console.log('*********** CARD_HASH: ' + trx);
         print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
 
         pagarme.client
