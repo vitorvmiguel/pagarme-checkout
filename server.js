@@ -17,19 +17,21 @@ app.post('/comprar', function(req, res) {
 
     if (req.body.token) {
         console.log('*********** TOKEN: ' + JSON.stringify(req.body));
-        
+
         print = '<h3>Token: ' + req.body.token + '</h3>\n';
         
     } else {
         console.log('*********** CARD_HASH: ' + JSON.stringify(req.body.pagarme));
 
         print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
+
+
         var transaction = JSON.stringify(req.body.pagarme);
         
         pagarme.client
         .connect({api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU'})
         .then(client => client.transactions.create({transaction}))
-        .catch(error => console.log(error));
+        .catch(error => error.response.errors.map(console.log));
     }
 
     res.send(print);
