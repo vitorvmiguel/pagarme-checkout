@@ -30,10 +30,10 @@ app.post('/comprar', function(req, res) {
     } 
     
     if (req.body.pagarme) {
-        
-        trx = JSON.stringify(req.body.pagarme);
 
-        console.log('*********** CARD_HASH: ' + trx);
+        trx = req.body.pagarme;
+
+        console.log('*********** CARD_HASH: ' + JSON.stringify(trx));
 
         print = '<h3>Card_hash: ' + trx.card_hash + '</3>';
 
@@ -43,16 +43,17 @@ app.post('/comprar', function(req, res) {
             .catch(error => error.response.errors.map(console.log));
     }
 
-    if (req.body.transaction) {
+    // if (req.body.transaction) {
 
-        console.log('*********** CAPTURA')
+    //     console.log('*********** CAPTURA')
 
-        pagarme.client
-            .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
-            .then(client => client.transactions.capture({ id: token, amount: req.body.transaction.amount }))
-            .catch(error => console.error(error));
+    //     pagarme.client
+    //         .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
+    //         .then(client => client.transactions.capture({ id: token, amount: req.body.transaction.amount }))
+    //         .catch(error => console.error(error));
 
-    }
+    // }
+
     // if (req.body.token) {
     //     console.log('*********** TOKEN: ' + JSON.stringify(req.body));
 
@@ -77,14 +78,14 @@ app.post('/comprar', function(req, res) {
 });
 
 app.post('/capture', function(req, res){
-
-    // var amount = req.body.transaction.amount;
-    // var token = req.body.transaction.id;
     
-    // pagarme.client
-    // .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
-    // .then(client => client.transactions.capture({ id: token, amount: amount }))
-    // .catch(error => console.error(error));
+    console.log('*********** CAPTURA')
+    
+            pagarme.client
+                .connect({ api_key: 'ak_test_mvofz5xg6lezCy0HrZVHE2stg6oudU' })
+                .then(client => client.transactions.capture({ id: token, amount: req.body.transaction.amount }))
+                .catch(error => console.error(error));
+
 });
 
 app.listen(80, function(){console.log('server running');});
