@@ -19,7 +19,7 @@ app.post('/comprar', function(req, res) {
     if (req.body.token) {
         token = req.body.token;
 
-        console.log(date + '*********** TOKEN: ' + token);
+        console.log(date + '*********** TOKEN: ' + JSON.stringify(req.body));
         print = '<h3>Token: ' + token + '</h3>\n';
 
     } 
@@ -29,7 +29,7 @@ app.post('/comprar', function(req, res) {
         var trx;
         trx = req.body.pagarme;
 
-        console.log(date + '*********** CARD_HASH: ' + trx.card_hash);
+        console.log(date + '*********** CARD_HASH: ' + JSON.stringify(req.body));
         print = '<h3>Card_hash: ' + req.body.pagarme.card_hash + '</3>';
 
         pagarme.client
